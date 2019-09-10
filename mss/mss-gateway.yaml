@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mss-gateway
+  namespace: mss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: mss-gateway
+  template:
+    metadata:
+      labels:
+        k8s-app: mss-gateway
+    spec:
+      containers:
+        - name: mss-gateway
+          image: 192.168.100.167:5000/mss-gateway
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mss-gateway-external
+  namespace: mss
+spec:
+  ports:
+    - port: 8050
+      targetPort: 8050
+      protocol: TCP
+      nodePort: 8050
+      name: p1
+    - port: 8718
+      targetPort: 8718
+      protocol: TCP
+      nodePort: 8718
+      name p2
+  type: NodePort
+  selector:
+    k8s-app: mss-gateway
