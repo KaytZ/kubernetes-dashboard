@@ -20,17 +20,17 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-          - mountPath: /docker/nginx/data
+          - mountPath: /data
             name: vol1
-          - mountPath: /docker/nginx/conf
+          - mountPath: /etc/nginx/conf.d
             name: vol2
       volumes:
       - hostPath:
-          path: /data
+          path: /docker/nginx/data
           type: DirectoryOrCreate
         name: vol1
       - hostPath:
-          path: /etc/nginx/conf.d
+          path: /docker/nginx/conf
           type: DirectoryOrCreate
         name: vol2
 ---
