@@ -7,7 +7,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: mss-static
+      k8s-app: mss-static
   template:
     metadata:
       labels:
