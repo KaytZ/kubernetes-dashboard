@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mss-auth
+  namespace: mss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: mss-auth
+  template:
+    metadata:
+      labels:
+        k8s-app: mss-auth
+    spec:
+      containers:
+        - name: mss-auth
+          image: 192.168.100.167:5000/mss-auth
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mss-auth-external
+  namespace: mss
+spec:
+  ports:
+    - port: 8800
+      targetPort: 8800
+      protocol: TCP
+      nodePort: 8800
+    - port: 8719
+      targetPort: 8719
+      protocol: TCP
+      nodePort: 8719
+  type: NodePort
+  selector:
+    k8s-app: mss-auth
