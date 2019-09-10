@@ -29,10 +29,12 @@ spec:
       targetPort: 8800
       protocol: TCP
       nodePort: 8800
+      name: p1
     - port: 8719
       targetPort: 8719
       protocol: TCP
       nodePort: 8719
+      name p2
   type: NodePort
   selector:
     k8s-app: mss-auth
