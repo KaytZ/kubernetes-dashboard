@@ -6,7 +6,8 @@ metadata:
 spec:
   replicas: 1
   selector:
-    name: mss-static
+    matchLabels:
+      app.kubernetes.io/name: mss-static
   template:
     metadata:
       labels: 
@@ -46,4 +47,5 @@ spec:
       hostPort: 81
   type: NodePort
   selector:
-    name: mss-static
+    matchLabels:
+      app.kubernetes.io/name: mss-static
