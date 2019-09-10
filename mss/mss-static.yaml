@@ -44,7 +44,6 @@ spec:
     - port: 80
       targetPort: 80
       protocol: TCP
-      hostPort: 81
   type: NodePort
   selector:
     k8s-app: mss-static
