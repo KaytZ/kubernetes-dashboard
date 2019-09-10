@@ -10,8 +10,8 @@ spec:
       app.kubernetes.io/name: mss-static
   template:
     metadata:
-      labels: 
-       name: mss-static
+      matchLabels:
+        k8s-app: mss-static
     spec:
       containers:
         - name: nginx
@@ -47,5 +47,4 @@ spec:
       hostPort: 81
   type: NodePort
   selector:
-    matchLabels:
-      app.kubernetes.io/name: mss-static
+    k8s-app: mss-static
