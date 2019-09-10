@@ -25,10 +25,10 @@ metadata:
   namespace: mss
 spec:
   ports:
-    - port: 8761
-      targetPort: 8761
+    - port: 8010
+      targetPort: 8010
       protocol: TCP
-      nodePort: 8761
+      nodePort: 8010
   type: NodePort
   selector:
     k8s-app: mss-config
