@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mss-eureka-server
+  namespace: mss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: mss-eureka-server
+  template:
+    metadata:
+      labels:
+        k8s-app: mss-eureka-server
+    spec:
+      containers:
+        - name: mss-eureka-servera
+          image: 192.168.100.167:5000/mss-eureka-server
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mss-eureka-server-external
+  namespace: mss
+spec:
+  ports:
+    - port: 8761
+      targetPort: 8761
+      protocol: TCP
+      nodePort: 8761
+  type: NodePort
+  selector:
+    k8s-app: mss-eureka-server
