@@ -10,7 +10,7 @@ spec:
       app.kubernetes.io/name: mss-static
   template:
     metadata:
-      matchLabels:
+      labels:
         k8s-app: mss-static
     spec:
       containers:
