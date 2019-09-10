@@ -24,6 +24,8 @@ spec:
             name: vol1
           - mountPath: /etc/nginx/conf.d
             name: vol2
+          - mountPath: /var/log/nginx
+            name: vol3
       volumes:
       - hostPath:
           path: /docker/nginx/data
@@ -33,6 +35,10 @@ spec:
           path: /docker/nginx/conf
           type: DirectoryOrCreate
         name: vol2
+      - hostPath:
+          path: /docker/nginx/log
+          type: DirectoryOrCreate
+        name: vol3
 ---
 apiVersion: v1
 kind: Service
