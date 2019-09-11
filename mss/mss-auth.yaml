@@ -34,7 +34,7 @@ spec:
       targetPort: 8719
       protocol: TCP
       nodePort: 8719
-      name p2
+      name: p2
   type: NodePort
   selector:
     k8s-app: mss-auth
