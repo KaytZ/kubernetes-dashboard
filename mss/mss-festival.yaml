@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mss-festival
+  namespace: mss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: mss-festival
+  template:
+    metadata:
+      labels:
+        k8s-app: mss-festival
+    spec:
+      containers:
+        - name: mss-festival
+          image: 192.168.100.167:5000/mss-festival
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mss-festival-external
+  namespace: mss
+spec:
+  ports:
+    - port: 9001
+      targetPort: 9001
+      protocol: TCP
+      nodePort: 9001
+      name: p1
+    - port: 8721
+      targetPort: 8721
+      protocol: TCP
+      nodePort: 8721
+      name: p2
+  type: NodePort
+  selector:
+    k8s-app: mss-festival
