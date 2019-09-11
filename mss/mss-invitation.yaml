@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mss-invitation
+  namespace: mss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: mss-invitation
+  template:
+    metadata:
+      labels:
+        k8s-app: mss-invitation
+    spec:
+      containers:
+        - name: mss-invitation
+          image: 192.168.100.167:5000/mss-invitation
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mss-invitation-external
+  namespace: mss
+spec:
+  ports:
+    - port: 8002
+      targetPort: 8002
+      protocol: TCP
+      nodePort: 8002
+      name: p1
+    - port: 8720
+      targetPort: 8720
+      protocol: TCP
+      nodePort: 8720
+      name: p2
+  type: NodePort
+  selector:
+    k8s-app: mss-invitation
