@@ -34,7 +34,7 @@ spec:
       targetPort: 8718
       protocol: TCP
       nodePort: 8718
-      name p2
+      name: p2
   type: NodePort
   selector:
     k8s-app: mss-gateway
