@@ -17,6 +17,14 @@ spec:
         - name: mss-festival
           image: 192.168.100.167:5000/mss-festival
           imagePullPolicy: Always
+          volumeMounts:
+          - mountPath: /logs
+            name: vol1
+      volumes:
+      - hostPath:
+          path: /docker/mss/logs
+          type: DirectoryOrCreate
+        name: vol1
 ---
 apiVersion: v1
 kind: Service
